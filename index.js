@@ -11,9 +11,9 @@ const config = {
   transResult: false, // log 中是否包含翻译结果
   importI18n: `import i18n from '@/config/i18n';`, // 
   prettierOption: {}, // 输出文件格式化配置
-  exclude: (url) => { // 需要排除的文件
-    // console.log(url, '==url==')
-    return false;
+  exclude: (name) => { // 需要排除的文件
+    // console.log(name, '==name==')
+    return /utils|config/.test(name);
   },
   getWordMap: ()=>({}), // 获取已有的文案字典
   getLog: log => { // 获取替换日志
