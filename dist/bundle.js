@@ -166,6 +166,8 @@ class TsxI18n extends BaseClass_1 {
     this.textMap = {};
     this.newMap = {};
 
+    // 旧字典
+    this.oldWordMap = {};
     // 翻译结果
     this.transResult = {};
     // 翻译错误
@@ -388,6 +390,17 @@ class TsxI18n extends BaseClass_1 {
     let wordKey = this.getWordKey(arr);
     let resolveKey = [area, moduleName, point, wordKey].filter(it => it).join('.');
     let checkErrorInfo; // 若没有找到不同，须记录提示信息
+
+    // 如在旧字典中查到相同取值key，则须记录手动处理
+    if(this.oldWordMap[resolveKey]){
+      checkErrorInfo = {
+        message: `在旧字典中查到相同的取值key：${resolveKey}`,
+        texts: {
+          prev: this.oldWordMap[resolveKey], // 之前翻译的信息
+          curr: undefined // 当前翻译文案
+        }
+      };
+    }
     // 校验 key 是否重复，若有重复则说明两条文案虽不同，但翻译后前5个单词相同
     if (this.transResult[resolveKey]) {
       // 获取已有的翻译结果
@@ -428,7 +441,8 @@ class TsxI18n extends BaseClass_1 {
         [item.newCode]: {
           words,
           ...info
-        }
+        },
+        ...this.translateError[item.filename] // 合并之前的错误项
       };
     });
   }
@@ -469,7 +483,7 @@ class TsxI18n extends BaseClass_1 {
                 };
                 result[resolveKey] = word;
               }
-              console.log(`共${words.length}, 第${index + 1}: `, wordKey, word);
+              console.log(`共${words.length}, 第${index + 1}完毕： `, wordKey, word);
             }
             setTimeout(() => {
               fn(index + 1);
@@ -500,7 +514,7 @@ class TsxI18n extends BaseClass_1 {
         // 插入i18n引用
         const { isReplace, importI18n } = this.filenameMap[filename];
         if (isReplace && !importI18n) {
-          newCode = `${importI18n}${newCode}`;
+          newCode = `${this.config.importI18n}${newCode}`;
         }
         this.filenameMap[filename].newCode = newCode;
       }
@@ -546,7 +560,7 @@ class TsxI18n extends BaseClass_1 {
       }
       if (this.filenameMap[filename].handler) {
         handler[filename] = this.filenameMap[filename].handler;
-        handlerLen += Object.keys(handler).length;
+        handlerLen += Object.keys(handler[filename]).length;
       }
     });
 

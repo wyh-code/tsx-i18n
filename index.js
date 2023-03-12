@@ -1,7 +1,7 @@
 
 const fs = require('fs');
-// const TsxI18n = require('./lib');
-const TsxI18n = require('./dist/bundle');
+const TsxI18n = require('./lib');
+// const TsxI18n = require('./dist/bundle');
 
 // 配置信息
 const config = {
@@ -16,7 +16,9 @@ const config = {
     // console.log(name, '==name==')
     return /utils|config/.test(name);
   },
-  getWordMap: ()=>({}), // 获取已有的文案字典
+  getWordMap: ()=>({
+    'area.moduleName.thisCopyCanBeFound': '旧字典中有的'
+  }), // 获取已有的文案字典
   getLog: log => { // 获取替换日志
     fs.writeFileSync('./log.json', JSON.stringify(log), 'utf-8')
   },
