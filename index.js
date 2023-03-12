@@ -1,6 +1,7 @@
 
 const fs = require('fs');
-const TsxI18n = require('./lib');
+// const TsxI18n = require('./lib');
+const TsxI18n = require('./dist/bundle');
 
 // 配置信息
 const config = {

@@ -1,3 +1,4 @@
+const commonjs = require('rollup-plugin-commonjs');
 const { babel } = require('@rollup/plugin-babel');
 
 module.exports = {
@@ -7,8 +8,9 @@ module.exports = {
     format: 'cjs'
   },
   plugins: [
-    babel({
-      "presets": ['@babel/preset-env'],
-    }),
+    commonjs(),
+    // babel({
+    //   "presets": ['@babel/preset-env'],
+    // }),
   ],
 };
