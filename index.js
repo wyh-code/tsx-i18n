@@ -9,7 +9,7 @@ const config = {
   moduleName: 'moduleName', // 业务模块
   point: '', // 功能点
   entry: '/src/code.tsx', // 入口文件，相对项目根路径地址
-  transResult: false, // log 中是否包含翻译结果
+  transResult: true, // log 中是否包含翻译结果
   importI18n: `import i18n from '@/config/i18n';`, // 
   prettierOption: {}, // 输出文件格式化配置
   exclude: (name) => { // 需要排除的文件

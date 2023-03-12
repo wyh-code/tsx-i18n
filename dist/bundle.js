@@ -386,9 +386,7 @@ class TsxI18n extends BaseClass_1 {
     const arr = str.split(' ').filter(it => it);
     // 默认取前5个单词
     let wordKey = this.getWordKey(arr);
-    // 获取前缀
-    const pre = [area, moduleName, point].filter(it => it);
-    let resolveKey = `${pre.join('.')}.${wordKey}`;
+    let resolveKey = [area, moduleName, point, wordKey].filter(it => it).join('.');
     let checkErrorInfo; // 若没有找到不同，须记录提示信息
     // 校验 key 是否重复，若有重复则说明两条文案虽不同，但翻译后前5个单词相同
     if (this.transResult[resolveKey]) {
@@ -400,7 +398,7 @@ class TsxI18n extends BaseClass_1 {
       if (unlike) {
         // 若找到，则追加不同单词作为key
         wordKey = `${wordKey}${this.replaceStr(unlike)}`;
-        resolveKey = `${pre.join('.')}.${wordKey}`;
+        resolveKey = [area, moduleName, point, wordKey].filter(it => it).join('.');
       } else {
         // 若没有在新单词中找到不同，则在老单词中寻找不同
         unlike = target.filter(item => !arr.includes(item))[0];

@@ -1,0 +1,22 @@
+{
+  "importFile": [
+    "/Users/mac/git/tsx-i18n/src/demo2.tsx"
+  ],
+  "replaceFile": [],
+  "noReplace": [
+    "/Users/mac/git/tsx-i18n/src/demo2.tsx"
+  ],
+  "excludeMap": {},
+  "wordList": [],
+  "findWord": [],
+  "newWordMap": {},
+  "writeError": [],
+  "handler": {
+    "/Users/mac/git/tsx-i18n/src/demo2.tsx": {
+      "`我的名字是 ${true ? '张三' : 'zhangsan'}`": "包含三目判断、引号时需手动处理"
+    }
+  },
+  "giveUp": {},
+  "transResult": {},
+  "translateError": {}
+}

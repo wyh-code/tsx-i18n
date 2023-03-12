@@ -5,29 +5,26 @@ import { getUrlParams } from '@/utils/globalFn';
 import List from './List';
 import Search, { ISearchValues } from './Search';
 
-interface IEntryListPageProps {
-
-}
-
-const getStyles = (str?) => {
-  const zh = '函数内部的中文';
-  return 'getStyles'
-}
-
-const info = {
-  user: {
-    age: 18
-  },
-  name: 'jack'
-}
-
+interface IEntryListPageProps {}
 
 const EntryListPage: FC<IEntryListPageProps> = () => {
- const str1 = '这是一个模版字符串说明啊'
-  const str2 = '这是一个模版字符串说明啊。'
 
+  const str = '这是一个中文字符串'
+  const tem = `这是一个模版字符串-${str}`
+
+  const info = {
+    user: {
+      age: 18
+    },
+    name: '这是一个中文属性',
+    adress: `这是一个中文模版字符串属性-${str}`
+  }
+ 
   return (
-    <div>11</div>
+    <div>
+      <div>中文文案</div>
+      <Component name="tom" age={`年龄是${info.user.age}`} />
+    </div>
   );
 };
 
