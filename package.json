@@ -1,8 +1,8 @@
 {
   "name": "tsx-i18n",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
-  "main": "/dist/bundle.js",
+  "main": "./dist/bundle.js",
   "scripts": {
     "build": "rollup -c"
   },
