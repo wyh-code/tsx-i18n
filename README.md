@@ -200,9 +200,9 @@ log 记录：
     "writeError": [],
     "handler": {},
     "giveUp": {
-      "/Users/mac/git/tsx-i18nsrc/components/PageHeader": {
-        "/Users/mac/git/tsx-i18nsrc/components/PageHeader.tsx": "未找到",
-        "/Users/mac/git/tsx-i18nsrc/components/PageHeader/index.tsx": "未找到"
+      "/Users/mac/git/tsx-i18n/src/components/PageHeader": {
+        "/Users/mac/git/tsx-i18n/src/components/PageHeader.tsx": "未找到",
+        "/Users/mac/git/tsx-i18n/src/components/PageHeader/index.tsx": "未找到"
       },
       "/Users/mac/git/tsx-i18n/src/List": {
         "/Users/mac/git/tsx-i18n/src/List.tsx": "未找到",
