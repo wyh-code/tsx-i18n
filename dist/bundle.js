@@ -36,7 +36,7 @@ class BaseClass {
 
     // 相对项目根路径
     if (/^\@\//.test(name)) {
-      pathName = name.replace(/^\@\//, `${this.rootPath}src/`);
+      pathName = name.replace(/^\@\//, `${this.rootPath}/src/`);
     }
 
     return pathName;
@@ -122,7 +122,7 @@ class BaseClass {
   replaceTemplate = (code) => {
     const data = [];
     let newCode = code.replace(/\${(.*?)}/g, (a, b, c, d) => {
-      const key = b.replace(/\./g, '_');
+      const key = b.replace(/\??\./g, '_');
 
       if (/\(.*\)/.test(b)) {
         // 函数调用 `str ${fn()}`
@@ -226,10 +226,13 @@ class TsxI18n extends BaseClass_1 {
               [`${filePath}/index.tsx`]: '未找到',
             };
             return;
-          }          // 缓存引用文件
-          this.filenameMap[filename] = {};
-          // 递归获取引用文件的引用
-          this.getAllPath(filename);
+          }
+          // 若引用文件未被缓存，则缓存引用文件
+          if (!this.filenameMap[filename]) {
+            this.filenameMap[filename] = {};
+            // 递归获取引用文件的引用
+            this.getAllPath(filename);
+          }
         }
       }
       return typescript.visitEachChild(node, visitor, context);
@@ -392,7 +395,7 @@ class TsxI18n extends BaseClass_1 {
     let checkErrorInfo; // 若没有找到不同，须记录提示信息
 
     // 如在旧字典中查到相同取值key，则须记录手动处理
-    if(this.oldWordMap[resolveKey]){
+    if (this.oldWordMap[resolveKey]) {
       checkErrorInfo = {
         message: `在旧字典中查到相同的取值key：${resolveKey}`,
         texts: {

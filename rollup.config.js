@@ -1,5 +1,5 @@
 const commonjs = require('rollup-plugin-commonjs');
-const { babel } = require('@rollup/plugin-babel');
+// const { babel } = require('@rollup/plugin-babel');
 
 module.exports = {
   input: './lib/index.js',
