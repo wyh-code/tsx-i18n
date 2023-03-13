@@ -1,6 +1,6 @@
 {
   "name": "tsx-i18n",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "./dist/bundle.js",
   "scripts": {
@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/wyh-code/tsx-i18n#readme",
   "dependencies": {
-    "@babel/preset-env": "^7.20.2",
     "@rollup/plugin-babel": "^6.0.3",
     "axios": "^1.3.4",
     "md5": "^2.3.0",
