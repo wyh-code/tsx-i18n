@@ -1,5 +1,37 @@
 ### 这是一个替换tsx内中文文案的脚本。
 
+## 使用方法
+1、在项目根目录新建js脚本文件
+```js
+// i18n.js
+const TsxI18n = require('tsx-i18n');
+
+// 配置信息
+const config = {
+  area: 'area', // 业务场景
+  moduleName: 'moduleName', // 业务模块
+  point: 'point', // 功能点
+  entry: '/src/index.tsx', // 入口文件，相对项目根路径地址
+  transResult: true, // log 中是否包含翻译结果
+  importI18n: `import i18n from '@/config/i18n';`, //
+  prettierOption: {}, // 输出文件格式化配置
+  exclude: (name) => { // 需要排除的文件
+    // console.log(name, '==name==')
+    return /api|config|utils/.test(name);
+  },
+  getWordMap: () => ({}), // 获取已有的文案字典
+  getLog: (log) => { /*获取替换日志*/ },
+};
+
+const tsxI18n = new TsxI18n(config);
+tsxI18n.init();
+```
+
+2、在命令行启动脚本
+```js
+  node i18n.js
+```
+
 ## 工作原理
 ### 分析
 1、在tsx代码中，文案类型可大致分为三类：string、templateString、jsxText。
@@ -31,27 +63,6 @@
 
 大致流程如下：
 > 获取入口文件绝对路径 -> 获取所有本地依赖模块 -> 遍历所有依赖文件收集文案 -> 建立字典 -> 替换文案 -> 覆写文件。      
-
-## 配置项
-```js
-// 配置信息
-  const config = {
-    area: 'area', // 业务场景
-    moduleName: 'moduleName', // 业务模块
-    point: '', // 功能点
-    entry: '/src/code.tsx', // 入口文件，相对项目根路径地址
-    transResult: false, // log 中是否包含翻译结果
-    importI18n: `import i18n from '@/config/i18n';`, // 插入的i18n引用代码
-    prettierOption: {}, // 输出文件格式化配置
-    exclude: (name) => { // 需要排除的文件
-      return /utils|config/.test(name);
-    },
-    getWordMap: ()=>({}), // 获取已有的文案字典
-    getLog: log => { // 获取替换日志
-      fs.writeFileSync('./log.json', JSON.stringify(log), 'utf-8')
-    },
-  }
-```
 
 ## 代码演示
 ### 一、基础替换
