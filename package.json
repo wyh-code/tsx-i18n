@@ -1,7 +1,7 @@
 {
   "name": "tsx-i18n",
   "version": "1.0.6",
-  "description": "",
+  "description": "tsx、i18n、国际化",
   "main": "./dist/bundle.js",
   "scripts": {
     "build": "rollup -c"
