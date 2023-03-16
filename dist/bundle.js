@@ -546,7 +546,6 @@ class TsxI18n extends BaseClass_1 {
     const noReplace = []; // 不用替换的文件
     const writeError = []; // 复写格式化出错
     const wordList = Object.keys(this.textMap); // 处理文案集合
-    const findWord = Object.keys(this.findKeys); // 复用文案集合
     const newWordMap = this.newMap; // 新建文案集合
     const handler = {}; // 需手动处理的文件
     let handlerLen = 0; // 需手动处理的个数
@@ -573,7 +572,7 @@ class TsxI18n extends BaseClass_1 {
       noReplace,
       excludeMap: this.excludeMap,
       wordList,
-      findWord,
+      findKeys: this.findKeys,
       newWordMap,
       writeError,
       handler,
@@ -600,7 +599,7 @@ class TsxI18n extends BaseClass_1 {
     log.green(`writeError: 格式化覆盖出错文件 ${writeError.length} 个`);
     log.red('------------------------------------------------------------');
     log.green(`wordList: 处理文案 ${wordList.length} 个`);
-    log.green(`findWord: 复用文案 ${findWord.length} 个`);
+    log.green(`findKeys: 复用文案 ${Object.keys(this.findKeys).length} 个`);
     log.green(`newWordMap: 新建文案 ${Object.keys(newWordMap).length} 个`);
     log.red('------------------------------------------------------------');
     log.green(`handler: 需手动复核 ${Object.keys(handler).length} 个文件，共 ${handlerLen} 处`);
