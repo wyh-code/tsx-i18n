@@ -1,7 +1,7 @@
 {
   "name": "tsx-i18n",
-  "version": "1.0.8",
-  "description": "tsx、i18n、国际化",
+  "version": "1.0.9",
+  "description": "一个在react应用中替换tsx文件内中文文案为i18n函数，实现国际化的脚本。",
   "main": "./dist/bundle.js",
   "scripts": {
     "build": "rollup -c"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/wyh-code/tsx-i18n.git"
   },
-  "keywords": [],
+  "keywords": ["tsx", "i18n", "国际化", "react"],
   "author": "",
   "license": "ISC",
   "bugs": {
