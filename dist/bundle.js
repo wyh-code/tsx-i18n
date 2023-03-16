@@ -43,23 +43,25 @@ class BaseClass {
   }
 
   // 查询已有key
-  findKey = (text) => {
+  findKey = (currText) => {
     const wordMap = this.wordMap;
-    const current = [text];
+    const current = [currText];
 
     // 如果文案以冒号结尾
-    if (/(:|：)$/.test(text)) {
-      current.push(text.slice(0, -1));
+    if (/(:|：)$/.test(currText)) {
+      current.push(currText.slice(0, -1));
     }
 
     let key;
+    let prevText;
     for (let k in wordMap) {
       if (current.includes(wordMap[k])) {
+        prevText = wordMap[k];
         key = k;
         break;
       }
     }
-    return key;
+    return key ? { key, prevText, currText } : key;
   }
 
   /**
@@ -300,7 +302,7 @@ class TsxI18n extends BaseClass_1 {
         if (this.checkTranslate(filename, newCode)) return node;
         // 如果以冒号结尾，需检查替换后是否冒号缺失
         this.checkColon(filename, newCode);
-        return typescript.factory.createIdentifier(`i18n('${this.findKey(newCode)}',{${data.join(',')}})`);
+        return typescript.factory.createIdentifier(`i18n('${this.findKey(newCode).key}',{${data.join(',')}})`);
       }
       // 字符串
       if (typescript.isStringLiteral(node) && node.text && /.*[\u4e00-\u9fa5]+.*/.test(node.text)) {
@@ -317,10 +319,10 @@ class TsxI18n extends BaseClass_1 {
         // 如果以冒号结尾，需检查替换后是否冒号缺失
         this.checkColon(filename, newCode);
         // 变量声明 - 对象属性 - 中文参数 
-        let newNode = typescript.factory.createIdentifier(`i18n('${this.findKey(newCode)}')`);
+        let newNode = typescript.factory.createIdentifier(`i18n('${this.findKey(newCode).key}')`);
         // 组件属性 
         if (typescript.isJsxAttribute(node.parent)) {
-          newNode = typescript.factory.createIdentifier(`{i18n('${this.findKey(newCode)}')}`);
+          newNode = typescript.factory.createIdentifier(`{i18n('${this.findKey(newCode).key}')}`);
         }
         return newNode;
       }
@@ -338,7 +340,7 @@ class TsxI18n extends BaseClass_1 {
         if (this.checkTranslate(filename, newCode)) return node;
         // 如果以冒号结尾，需检查替换后是否冒号缺失
         this.checkColon(filename, newCode);
-        return typescript.factory.createIdentifier(`{i18n('${this.findKey(node.text.trim())}')}`);
+        return typescript.factory.createIdentifier(`{i18n('${this.findKey(node.text.trim()).key}')}`);
       }
       return typescript.visitEachChild(node, visitor, context);
     };
@@ -367,9 +369,9 @@ class TsxI18n extends BaseClass_1 {
     // 获取需要翻译的字段
     const words = [];
     Object.keys(this.textMap).forEach(text => {
-      const key = this.findKey(text);
-      if (key) {
-        this.findKeys[key] = text;
+      const info = this.findKey(text);
+      if (info) {
+        this.findKeys[info.key] = info.currText === info.prevText ? info.currText : { prevText: info.prevText, currText: info.currText };
       } else {
         words.push(this.textMap[text]);
       }
