@@ -308,7 +308,8 @@ demo 演示：
 
 
 ## 发布记录
-2023-03-21
+#### 2023-03-21
+
 新增 `getPrveKeys` 属性。若该属性为 `true`，则脚本只会收集代码中已有的 `key`，并将收集的 `key` 写入 `log`，不会进行文案替换。         
 
 如下所示：
@@ -319,7 +320,7 @@ demo 演示：
     getPrveKeys: true
     ...
   }
-  
+
   // 源代码
   ...
   Message.error(i18n('employee.transaction.changeList.pleaseFillInAPiece'));
