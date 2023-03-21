@@ -1,6 +1,6 @@
 {
   "name": "tsx-i18n",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "一个在react应用中替换tsx文件内中文文案为i18n函数，实现国际化的脚本。",
   "main": "./dist/bundle.js",
   "scripts": {

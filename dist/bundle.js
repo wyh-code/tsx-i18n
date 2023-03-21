@@ -176,6 +176,9 @@ class TsxI18n extends BaseClass_1 {
     this.translateError = {};
     // 复用的key
     this.findKeys = {};
+    // 代码中已有的key
+    this.prveKeys = {};
+
     // 日志收集
     this.log = {};
   }
@@ -277,10 +280,25 @@ class TsxI18n extends BaseClass_1 {
     return result;
   }
 
+  getPrveKeys = (node) => {
+    const keyStr = node.getText().trim();
+    let prveKey;
+    if (/^(i18n\()/.test(keyStr)) {
+      prveKey = node.arguments[0].text;
+    }
+
+    if (prveKey) {
+      this.prveKeys[prveKey] = keyStr;
+    }
+  }
+
   replaceTransformer = (type, filename) => (context) => {
     const visitor = (node) => {
       // 排除已经替换的i18n 和 console
       if (typescript.isCallExpression(node) && /^(i18n\(|console)/.test(node.getText())) {
+        // 记录已经存在无需替换的key
+        this.getPrveKeys(node);
+
         return node;
       }
       // 模版字符串
@@ -575,6 +593,7 @@ class TsxI18n extends BaseClass_1 {
       excludeMap: this.excludeMap,
       wordList,
       findKeys: this.findKeys,
+      prveKeys: this.prveKeys,
       newWordMap,
       writeError,
       handler,
@@ -600,6 +619,7 @@ class TsxI18n extends BaseClass_1 {
     log.green(`giveUp: 放弃编译文件 ${giveUpLen} 个`);
     log.green(`writeError: 格式化覆盖出错文件 ${writeError.length} 个`);
     log.red('------------------------------------------------------------');
+    log.green(`prveKeys: 代码中已有文案 ${Object.keys(this.prveKeys).length} 个（已有文案无需处理）`);
     log.green(`wordList: 处理文案 ${wordList.length} 个`);
     log.green(`findKeys: 复用文案 ${Object.keys(this.findKeys).length} 个`);
     log.green(`newWordMap: 新建文案 ${Object.keys(newWordMap).length} 个`);
@@ -623,15 +643,19 @@ class TsxI18n extends BaseClass_1 {
     // 收集文案
     log.green('开始收集需要替换的文案');
     this.compile(COLLECT);
-    // 建立字典
-    log.red('开始创建字典');
-    await this.createWordMap();
-    // 替换文案
-    log.green('开始依次替换文案');
-    this.compile(REPLACE);
-    // 格式化输出
-    log.green('格式化输出新代码');
-    this.writeNewCode();
+
+    // 只收集已在文案中的 key
+    if (!this.config.getPrveKeys) {
+      // 建立字典
+      log.red('开始创建字典');
+      await this.createWordMap();
+      // 替换文案
+      log.green('开始依次替换文案');
+      this.compile(REPLACE);
+      // 格式化输出
+      log.green('格式化输出新代码');
+      this.writeNewCode();
+    }
     // 信息打印
     this.writeLog();
   }
