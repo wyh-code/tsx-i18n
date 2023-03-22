@@ -308,8 +308,42 @@ demo 演示：
 
 
 ## 发布记录
-#### 2023-03-21
+#### 2023-03-21: v1.0.11
+1、`log` 输出新增 `prveKeysError` 属性。记录收集 `prveKeys` 时产生的错误。            
 
+如下所示：
+```js
+  // log 信息
+  {
+    ...
+    "prveKeysError": { ... }
+    ...
+  }
+```
+
+2、新增 `diffKeys` 配置。对比已在使用的 key 与现字典的差异。          
+使用场景：项目中包含 A、B、C  等模块，原有的字典文案包含A、B、C所有的文案词条，现需要将A、B、C模块字典拆分，可用此字段获取A模块所有正在使用的key。        
+如下所示：
+```js
+  // 配置信息
+  const config = {
+    ...
+    diffKeys: true,
+     getWordMap: () => ({}) // 返回现有A模块字典
+    ...
+  }
+
+  // log 信息
+  {
+    "diffKeys": {
+      ...
+      "area.moduleName.${name}": "i18n(`area.moduleName.${name}`)",
+      ...
+    }
+  }
+```
+
+#### 2023-03-21: 1.0.10
 新增 `getPrveKeys` 属性。若该属性为 `true`，则脚本只会收集代码中已有的 `key`，并将收集的 `key` 写入 `log`，不会进行文案替换。         
 
 如下所示：
@@ -323,7 +357,7 @@ demo 演示：
 
   // 源代码
   ...
-  Message.error(i18n('employee.transaction.changeList.pleaseFillInAPiece'));
+  Message.error(i18n('area.moduleName.changeList.pleaseFillInAPiece'));
   ...
 
   // log 信息
@@ -331,7 +365,7 @@ demo 演示：
     ...
     "prveKeys": {
       ...
-      "employee.transaction.changeList.pleaseFillInAPiece": "i18n('employee.transaction.changeList.pleaseFillInAPiece')"
+      "area.moduleName.changeList.pleaseFillInAPiece": "i18n('area.moduleName.changeList.pleaseFillInAPiece')"
       ...
     }
     ...

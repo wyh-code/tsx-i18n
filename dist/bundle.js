@@ -178,7 +178,10 @@ class TsxI18n extends BaseClass_1 {
     this.findKeys = {};
     // 代码中已有的key
     this.prveKeys = {};
-
+    // 代码中已有 i18n 函数引用的key与当前字典中 key 的差异
+    this.diffKeys = {};
+    // 收集key时的错误
+    this.prveKeysError = {};
     // 日志收集
     this.log = {};
   }
@@ -284,11 +287,25 @@ class TsxI18n extends BaseClass_1 {
     const keyStr = node.getText().trim();
     let prveKey;
     if (/^(i18n\()/.test(keyStr)) {
-      prveKey = node.arguments[0].text;
+      prveKey = node.arguments[0].getText();
+      
+      if(prveKey){
+        prveKey = prveKey.replace(/'|"|`/g, '');
+      }else {
+        this.prveKeysError[keyStr] = keyStr;
+      }
     }
 
     if (prveKey) {
       this.prveKeys[prveKey] = keyStr;
+
+      // 记录已用key与现有字典的差异
+      if(this.config.diffKeys){
+        if(!this.oldWordMap[prveKey]){
+          console.log(this.oldWordMap[prveKey], prveKey);
+          this.diffKeys[prveKey] = keyStr;
+        }
+      }
     }
   }
 
@@ -380,9 +397,12 @@ class TsxI18n extends BaseClass_1 {
     return node;
   }
 
-  createWordMap = async () => {
+  getWordMap = async () => {
     // 获取已有文案
     this.oldWordMap = await this.config.getWordMap();
+  }
+
+  createWordMap = async () => {
     this.wordMap = { ...this.oldWordMap };
     // 获取需要翻译的字段
     const words = [];
@@ -594,6 +614,8 @@ class TsxI18n extends BaseClass_1 {
       wordList,
       findKeys: this.findKeys,
       prveKeys: this.prveKeys,
+      diffKeys: this.diffKeys,
+      prveKeysError: this.prveKeysError,
       newWordMap,
       writeError,
       handler,
@@ -620,7 +642,9 @@ class TsxI18n extends BaseClass_1 {
     log.green(`writeError: 格式化覆盖出错文件 ${writeError.length} 个`);
     log.red('------------------------------------------------------------');
     log.green(`prveKeys: 代码中已有文案 ${Object.keys(this.prveKeys).length} 个（已有文案无需处理）`);
-    log.green(`wordList: 处理文案 ${wordList.length} 个`);
+    log.green(`prveKeysError: 搜集 prveKeys 时的未知错误 ${Object.keys(this.prveKeysError).length} 个`);
+    log.green(`diffKeys: 代码中已有i18n函数引用的key与当前字典中key的差异 ${Object.keys(this.diffKeys).length} 个`);
+    log.green(`wordList: 扫描到文案 ${wordList.length} 个`);
     log.green(`findKeys: 复用文案 ${Object.keys(this.findKeys).length} 个`);
     log.green(`newWordMap: 新建文案 ${Object.keys(newWordMap).length} 个`);
     log.red('------------------------------------------------------------');
@@ -640,14 +664,22 @@ class TsxI18n extends BaseClass_1 {
     // 获取所有要替换的路径
     log.red('开始收集需要替换的路径');
     this.getAllPath(entryFile);
+
+    // 获取现有字典 
+    log.red('开始获取现有字典');
+    await this.getWordMap();
+
     // 收集文案
     log.green('开始收集需要替换的文案');
     this.compile(COLLECT);
 
-    // 只收集已在文案中的 key
-    if (!this.config.getPrveKeys) {
-      // 建立字典
-      log.red('开始创建字典');
+    /**
+     * this.config.getPrveKeys - 只收集已在文案中的 key 
+     * this.config.diffKeys - 对比当前已使用的 key 和当前字段的差异
+     */
+    if (!this.config.getPrveKeys || !this.config.diffKeys) {
+      // 建立新字典
+      log.red('开始创建新字典');
       await this.createWordMap();
       // 替换文案
       log.green('开始依次替换文案');
