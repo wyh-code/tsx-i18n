@@ -12,8 +12,10 @@ const config = {
   transResult: true, // log 中是否包含翻译结果
   importI18n: `import i18n from '@/config/i18n';`, // 
   prettierOption: {}, // 输出文件格式化配置
-  getPrveKeys: true, // 获取代码中已在使用的 key
-  diffKeys: true, // 对比已在使用的 key 与现字典的差异
+  // getPrveKeys: true, // 获取代码中已在使用的 key
+  // diffKeys: true, // 对比已在使用的 key 与现字典的差异
+  // replaceKey: true, // 将代码中已有的key为替换为当前字典的key
+  // replaceWordMap, // 需要替换的字典（已在使用的旧字典）
   exclude: (name) => { // 需要排除的文件
     // console.log(name, '==name==')
     return /utils|config/.test(name);
