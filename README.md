@@ -309,8 +309,15 @@ demo 演示：
 
 ## 发布记录
 #### 2023-03-29
+#### 优化
 1、优化已有文案查找逻辑及提示信息
 2、`replaceKey`: 替换已有 `key` 为新字典的 `key`
+
+#### 新增
+1、`baseWordMap` 基础字典
+2、`formaterBaseWordMap` 基础字典格式化
+#### 删除
+1、删除 `getWordMap` 属性。
 #### 2023-03-21: v1.0.11
 1、`log` 输出新增 `prveKeysError` 属性。记录收集 `prveKeys` 时产生的错误。            
 
