@@ -316,8 +316,10 @@ demo 演示：
 #### 新增
 1、`baseWordMap` 基础字典
 2、`formaterBaseWordMap` 基础字典格式化
+3、`type` 编译类型
 #### 删除
 1、删除 `getWordMap` 属性。
+2、删除 `replaceKey`
 #### 2023-03-21: v1.0.11
 1、`log` 输出新增 `prveKeysError` 属性。记录收集 `prveKeys` 时产生的错误。            
 
