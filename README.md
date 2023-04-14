@@ -341,7 +341,7 @@ demo 演示：
   const config = {
     ...
     diffKeys: true,
-     getWordMap: () => ({}) // 返回现有A模块字典
+    getWordMap: () => ({}) // 返回现有A模块字典
     ...
   }
 

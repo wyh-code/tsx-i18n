@@ -1,1 +1,242 @@
-{"importFile":["/Users/mac/git/tsx-i18n/src/demo4.tsx"],"replaceFile":["/Users/mac/git/tsx-i18n/src/demo4.tsx"],"noReplace":[],"excludeMap":{},"wordList":["用户名:","用户名","中文值","中文值："],"findWord":[],"newWordMap":{"area.moduleName.userName":"用户名:","area.moduleName.chineseValue":"中文值"},"writeError":[],"handler":{"/Users/mac/git/tsx-i18n/src/demo4.tsx":{"用户名:":"需检查替换后是否冒号缺失","用户名":{"tip":"翻译出错","words":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'用户名'","newCode":"用户名"}],"message":"两条不同的文案有相同的英文翻译，得到相同的取值key：area.moduleName.userName","resolveKey":"area.moduleName.userName","texts":{"prev":{"target":["user","name"],"source":"用户名:","info":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'用户名:'","newCode":"用户名:"}]},"curr":{"target":["user","name"],"source":"用户名","info":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'用户名'","newCode":"用户名"}]}}},"中文值：":{"tip":"翻译出错","words":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'中文值：'","newCode":"中文值："}],"message":"两条不同的文案有相同的英文翻译，得到相同的取值key：area.moduleName.chineseValue","resolveKey":"area.moduleName.chineseValue","texts":{"prev":{"target":["Chinese","value"],"source":"中文值","info":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'中文值'","newCode":"中文值"}]},"curr":{"target":["Chinese","value"],"source":"中文值：","info":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'中文值：'","newCode":"中文值："}]}}}}},"giveUp":{},"transResult":{"area.moduleName.userName":{"target":["user","name"],"source":"用户名:","info":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'用户名:'","newCode":"用户名:"}]},"area.moduleName.chineseValue":{"target":["Chinese","value"],"source":"中文值","info":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'中文值'","newCode":"中文值"}]}},"translateError":{"/Users/mac/git/tsx-i18n/src/demo4.tsx":{"中文值：":{"words":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'中文值：'","newCode":"中文值："}],"message":"两条不同的文案有相同的英文翻译，得到相同的取值key：area.moduleName.chineseValue","resolveKey":"area.moduleName.chineseValue","texts":{"prev":{"target":["Chinese","value"],"source":"中文值","info":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'中文值'","newCode":"中文值"}]},"curr":{"target":["Chinese","value"],"source":"中文值：","info":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'中文值：'","newCode":"中文值："}]}}},"用户名":{"words":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'用户名'","newCode":"用户名"}],"message":"两条不同的文案有相同的英文翻译，得到相同的取值key：area.moduleName.userName","resolveKey":"area.moduleName.userName","texts":{"prev":{"target":["user","name"],"source":"用户名:","info":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'用户名:'","newCode":"用户名:"}]},"curr":{"target":["user","name"],"source":"用户名","info":[{"filename":"/Users/mac/git/tsx-i18n/src/demo4.tsx","type":"string","source":"'用户名'","newCode":"用户名"}]}}}}}}
+{
+  "importFile": [
+    "/Users/mac/git/tsx-i18n/src/demo4.tsx"
+  ],
+  "replaceFile": [
+    "/Users/mac/git/tsx-i18n/src/demo4.tsx"
+  ],
+  "noReplace": [],
+  "excludeMap": {},
+  "wordList": [
+    "用户名:",
+    "用户名",
+    "中文值",
+    "中文值："
+  ],
+  "findWord": [],
+  "newWordMap": {
+    "area.moduleName.userName": "用户名:",
+    "area.moduleName.chineseValue": "中文值"
+  },
+  "writeError": [],
+  "handler": {
+    "/Users/mac/git/tsx-i18n/src/demo4.tsx": {
+      "用户名:": "需检查替换后是否冒号缺失",
+      "用户名": {
+        "tip": "翻译出错",
+        "words": [
+          {
+            "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+            "type": "string",
+            "source": "'用户名'",
+            "newCode": "用户名"
+          }
+        ],
+        "message": "两条不同的文案有相同的英文翻译，得到相同的取值key：area.moduleName.userName",
+        "resolveKey": "area.moduleName.userName",
+        "texts": {
+          "prev": {
+            "target": [
+              "user",
+              "name"
+            ],
+            "source": "用户名:",
+            "info": [
+              {
+                "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+                "type": "string",
+                "source": "'用户名:'",
+                "newCode": "用户名:"
+              }
+            ]
+          },
+          "curr": {
+            "target": [
+              "user",
+              "name"
+            ],
+            "source": "用户名",
+            "info": [
+              {
+                "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+                "type": "string",
+                "source": "'用户名'",
+                "newCode": "用户名"
+              }
+            ]
+          }
+        }
+      },
+      "中文值：": {
+        "tip": "翻译出错",
+        "words": [
+          {
+            "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+            "type": "string",
+            "source": "'中文值：'",
+            "newCode": "中文值："
+          }
+        ],
+        "message": "两条不同的文案有相同的英文翻译，得到相同的取值key：area.moduleName.chineseValue",
+        "resolveKey": "area.moduleName.chineseValue",
+        "texts": {
+          "prev": {
+            "target": [
+              "Chinese",
+              "value"
+            ],
+            "source": "中文值",
+            "info": [
+              {
+                "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+                "type": "string",
+                "source": "'中文值'",
+                "newCode": "中文值"
+              }
+            ]
+          },
+          "curr": {
+            "target": [
+              "Chinese",
+              "value"
+            ],
+            "source": "中文值：",
+            "info": [
+              {
+                "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+                "type": "string",
+                "source": "'中文值：'",
+                "newCode": "中文值："
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "giveUp": {},
+  "transResult": {
+    "area.moduleName.userName": {
+      "target": [
+        "user",
+        "name"
+      ],
+      "source": "用户名:",
+      "info": [
+        {
+          "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+          "type": "string",
+          "source": "'用户名:'",
+          "newCode": "用户名:"
+        }
+      ]
+    },
+    "area.moduleName.chineseValue": {
+      "target": [
+        "Chinese",
+        "value"
+      ],
+      "source": "中文值",
+      "info": [
+        {
+          "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+          "type": "string",
+          "source": "'中文值'",
+          "newCode": "中文值"
+        }
+      ]
+    }
+  },
+  "translateError": {
+    "/Users/mac/git/tsx-i18n/src/demo4.tsx": {
+      "中文值：": {
+        "words": [
+          {
+            "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+            "type": "string",
+            "source": "'中文值：'",
+            "newCode": "中文值："
+          }
+        ],
+        "message": "两条不同的文案有相同的英文翻译，得到相同的取值key：area.moduleName.chineseValue",
+        "resolveKey": "area.moduleName.chineseValue",
+        "texts": {
+          "prev": {
+            "target": [
+              "Chinese",
+              "value"
+            ],
+            "source": "中文值",
+            "info": [
+              {
+                "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+                "type": "string",
+                "source": "'中文值'",
+                "newCode": "中文值"
+              }
+            ]
+          },
+          "curr": {
+            "target": [
+              "Chinese",
+              "value"
+            ],
+            "source": "中文值：",
+            "info": [
+              {
+                "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+                "type": "string",
+                "source": "'中文值：'",
+                "newCode": "中文值："
+              }
+            ]
+          }
+        }
+      },
+      "用户名": {
+        "words": [
+          {
+            "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+            "type": "string",
+            "source": "'用户名'",
+            "newCode": "用户名"
+          }
+        ],
+        "message": "两条不同的文案有相同的英文翻译，得到相同的取值key：area.moduleName.userName",
+        "resolveKey": "area.moduleName.userName",
+        "texts": {
+          "prev": {
+            "target": [
+              "user",
+              "name"
+            ],
+            "source": "用户名:",
+            "info": [
+              {
+                "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+                "type": "string",
+                "source": "'用户名:'",
+                "newCode": "用户名:"
+              }
+            ]
+          },
+          "curr": {
+            "target": [
+              "user",
+              "name"
+            ],
+            "source": "用户名",
+            "info": [
+              {
+                "filename": "/Users/mac/git/tsx-i18n/src/demo4.tsx",
+                "type": "string",
+                "source": "'用户名'",
+                "newCode": "用户名"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
