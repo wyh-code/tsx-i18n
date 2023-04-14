@@ -13,3 +13,9 @@
     data: { error_code: '54003', error_msg: 'Invalid Access Limit' }
   }
 ```
+特殊文案记录
+```jsx
+  <div>{`${item.name} ${item.workNo} 甲方主管：${item.regularManagerName}(${item.regularManagerNickName}) ${item.projectName}`}</div>
+  <div>{`甲方主管：${item.regularManagerName}${item?.regularManagerNickName ? `(${item?.regularManagerNickName})` : ''}`}</div>
+  <div>{`共${dataSource?.length}条`}</div>
+···
